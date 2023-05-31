@@ -22,6 +22,8 @@ import Itinerariobasic from '../Itenerarios/Itinerariobasic';
 import Forward10Icon from '@material-ui/icons/Forward10';
 import { useHistory, useParams } from 'react-router-dom';
 import swal from 'sweetalert';
+import paquetes from '../../paquetes-data';
+
 registerLocale('es', es);
 
 
@@ -35,13 +37,16 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
     setEndDate(addDays(startDate, paque.data.dias - 1));
   };
   const classes = useStyles();
+
   const [paque, setPaque] = useState(
     {
       data: [],
     });
+
   const [fecha, setFecha] = useState({
     total: null,
   });
+
   const getFecha = async (startDate, endDate) => {
     var date = startDate;
     var datew = endDate;
@@ -54,28 +59,27 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
     const hotel = (paque.data.hotel);
     const fecha_entrada = `${fecha_año}-${fecha_mes}-${fecha_dia}`;
     const fecha_salida = `${fecha_año1}-${fecha_mes1}-${fecha_dia1}`;
-    const res = await axios.get(`http://localhost:4000/calendario/count/${fecha_entrada}/${fecha_salida}/${hotel}`
-    );
-    if (res) {
+
+    //const res = await axios.get(`http://localhost:4000/calendario/count/${fecha_entrada}/${fecha_salida}/${hotel}`);
+    /* if (res) {
       setFecha({
         total: res.data,
       });
-    }
-    ir(res);
+    } */
+    //ir(res);
   };
   const { paquetesid } = useParams();
   useEffect(() => {
-    const getPaquetes = async () => {
-      const res = await axios.get(`http://localhost:4000/paquete/${paquetesid}`);
-      if (res) {
-        setPaque({
-          data: res.data,
-        });
-      }
-    };
-    getPaquetes();
-  }, [])
+
+    setPaque({
+      data: paquetes.find(paquete => paquete.paquetesid == paquetesid)
+    });
+
+
+  }, []);
+
   const [loading, setLoading] = useState(false);
+
   const ir = (res) => {
     if (res.data >= 6) {
       swal({
@@ -107,12 +111,13 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
     setEndDate(new Date(addDays(startDate, +2)));
     setFecha({ total: null });
   }
-  const {loader} = paque;
+  const { loader } = paque;
   if (loader) {
     return <div className={classes.spinner}>
       <Forward10Icon />
     </div>
   }
+
   return (
     <div className={classes.root}>
       <Header />
@@ -178,19 +183,19 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
                     color="primary"
                     onClick={() => agregarPaquete(startDate, endDate)}>
                     Comprar
-                         </Button>) :
+                  </Button>) :
                     (<Button
                       variant="contained"
                       color="primary"
                       onClick={() => getFecha(startDate, endDate)}>
                       Ver Fechas
-                      </Button>)
+                    </Button>)
                 }
               </div>
             </div>
           </Paper>
           <div className={classes.details}>
-            <Detailsbasic title={paque.data.nombreH} image={paque.data.image} />
+            <Detailsbasic hotelid={paque.data.hotel} />
           </div>
         </div>
         <div className={classes.BannerLeft}>
@@ -199,7 +204,7 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
       </Grid>
       <div className={classes.itinerario}>
         <Typography variant="h4" align="center" gutterBottom>Itinerario de Viaje:</Typography>
-        <Itinerariobasic idpaquete={paque.data.paquetesid} titulo={paque.data.titulo} />
+        <Itinerariobasic idpaquete={paque.data.paquetesid} />
       </div>
       <div className={classes.conditions}>
         <Typography variant="h4" align="center">Condiciones:</Typography>
@@ -213,6 +218,8 @@ const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#FFF ',
     minHeight: '100vh',
+    display: "flex",
+    flexDirection: "column",
   },
   step: {
     marginTop: "2rem",
@@ -307,18 +314,15 @@ const useStyles = makeStyles((theme) => ({
       position: "relative",
       maxHeight: "100vh",
       maxWidth: "100vw",
-
     },
   },
   BannerLeft: {
     [theme.breakpoints.down("sm")]: {
       marginTop: "80rem",
       marginLeft: "0rem",
-
     },
   },
   button: {
-
     maxHeight: "5vw",
     maxWidth: '15vh',
     marginLeft: "4rem",
@@ -335,7 +339,6 @@ const useStyles = makeStyles((theme) => ({
     width: "100vw",
     height: "100vh",
     borderRadius: "50%",
-
   },
 
 }));

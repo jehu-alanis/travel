@@ -97,7 +97,18 @@ CREATE TABLE `itenerario` (
 
 LOCK TABLES `itenerario` WRITE;
 /*!40000 ALTER TABLE `itenerario` DISABLE KEYS */;
-INSERT INTO `itenerario` VALUES (1,'Dia 1','Check in en el Hotel Tonala, Salida al Centro,Salida al Parque,Noche Libre',1),(2,'Dia 2','Check in en el Hotel Tonala,Salida a Puerto Arista,Salida al La cruceita,Regreso a Tonala,Noche Libre',1),(3,'Dia 3','Check in en el Hotel Tonala,Salida al Centro,Checkout',1),(4,'Dia 1','Check in en el Hotel Grajanda, Salida al Centro, Salida al Parque,Salida al La cruceita,Noche Libre',2),(5,'Dia 2','Check in en el Hotel Grajanda,Salida a Puerto Arista ,Regreso a Tonala',2),(6,'Dia 3','Check in en el Hotel Grajanda,Salida a Boca del Cielo ,Regreso a Tonala',2),(7,'Dia 4','Check in en el Hotel Grajanda,Salida al Centro ,Checkout',2),(8,'Dia 1','Check in en el Hotel Garden,  Salida al Centro, Salida al Parque,Salida al La cruceita,Noche Libre',3),(9,'Dia 2','Check in en el Hotel Garden, Salida a Puerto Arista ,Regreso a Tonala,Noche Libre',3),(10,'Dia 3','Check in en el Hotel Garden, Salida a Boca del Cielo ,Regreso a Tonala, Noche Libre',3),(11,'Dia 4','Check in en el Hotel Garden, Salida a Madre Sal ,Regreso a Tonala, Noche Libre',3),(12,'Dia 5','Check in en el Hotel Garden,Salida al Centro ,Checkout',3);
+INSERT INTO `itenerario` VALUES (1,'Dia 1','Check in en el Hotel Tonala, Salida al Centro,Salida al Parque,Noche Libre',1),
+(2,'Dia 2','Check in en el Hotel Tonala,Salida a Puerto Arista,Salida al La cruceita,Regreso a Tonala,Noche Libre',1),
+(3,'Dia 3','Check in en el Hotel Tonala,Salida al Centro,Checkout',1),
+(4,'Dia 1','Check in en el Hotel Grajanda, Salida al Centro, Salida al Parque,Salida al La cruceita,Noche Libre',2),
+(5,'Dia 2','Check in en el Hotel Grajanda,Salida a Puerto Arista ,Regreso a Tonala',2),
+(6,'Dia 3','Check in en el Hotel Grajanda,Salida a Boca del Cielo ,Regreso a Tonala',2),
+(7,'Dia 4','Check in en el Hotel Grajanda,Salida al Centro ,Checkout',2),
+(8,'Dia 1','Check in en el Hotel Garden,  Salida al Centro, Salida al Parque,Salida al La cruceita,Noche Libre',3),
+(9,'Dia 2','Check in en el Hotel Garden, Salida a Puerto Arista ,Regreso a Tonala,Noche Libre',3),
+(10,'Dia 3','Check in en el Hotel Garden, Salida a Boca del Cielo ,Regreso a Tonala, Noche Libre',3),
+(11,'Dia 4','Check in en el Hotel Garden, Salida a Madre Sal ,Regreso a Tonala, Noche Libre',3),
+(12,'Dia 5','Check in en el Hotel Garden,Salida al Centro ,Checkout',3);
 /*!40000 ALTER TABLE `itenerario` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -174,3 +185,10 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2021-08-18 23:31:13
+'Global periodicidad':       cfdi.informacionAdicional.periodicidad || '',
+            'Global meses':              cfdi.informacionAdicional.meses || '',
+            'Global año':                cfdi.informacionAdicional.año || '',
+
+             { "value": "Global periodicidad",  "selected": true },
+        { "value": "Global meses",         "selected": true },
+        { "value": "Global año",           "selected": true },

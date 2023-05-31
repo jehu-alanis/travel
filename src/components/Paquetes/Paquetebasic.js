@@ -249,7 +249,6 @@ const useStyles = makeStyles((theme) => ({
       marginLeft: "1rem",
       maxWidth: "80vw",
     },
-
   },
   conditions: {
     marginTop: "2rem",
@@ -257,7 +256,6 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "1rem",
 
   },
-
   includes: {
     marginTop: "1rem",
     [theme.breakpoints.down("sm")]: {

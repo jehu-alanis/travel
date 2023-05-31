@@ -20,7 +20,7 @@ const Lugares = ({ title, id }) => {
 const useStyles = makeStyles((theme) => ({
   root: {
     backgroundColor: '#FFF ',
-    minHeight: '100vh',
+    //minHeight: '100vh',
   },
 }));
 

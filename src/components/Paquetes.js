@@ -43,9 +43,7 @@ const Paquetes = ({ title, id }) => {
     <div data-aos="fade-up" id={id} >
       <div className={classes.head}>
         {title}
-
       </div>
-
       <Grid
         container
         direction="row"
@@ -69,7 +67,7 @@ const useStyles = makeStyles((theme) => ({
     marginTop: "1rem",
     fontSize: "3rem",
     display: "flex",
-    marginLeft: "35rem",
+    justifyContent: "center",
     [theme.breakpoints.down("sm")]: {
       marginLeft: "30%",
     },

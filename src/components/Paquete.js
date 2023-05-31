@@ -14,7 +14,6 @@ const Paquete = ({ paque: { paquetesid, precio, dias, descripcion, hotel, titulo
     <div className={classes.root}>
       <Card className={classes.card}>
         <CardHeader className={classes.title}
-
           title={titulo}
           subheader={<Typography className={classes.subColor}>{subtitle}</Typography>}
         />
@@ -28,8 +27,8 @@ const Paquete = ({ paque: { paquetesid, precio, dias, descripcion, hotel, titulo
             {descripcion}
           </Typography>
         </CardContent>
-        <CardActions disableSpacing >
-          <Button className={classes.button}
+        <div className={classes.button}>
+        <Button 
             variant="contained"
             color="primary"
             endIcon={<CallMadeOutlinedIcon />}
@@ -37,9 +36,7 @@ const Paquete = ({ paque: { paquetesid, precio, dias, descripcion, hotel, titulo
           >
             Más Información
           </Button>
-
-        </CardActions>
-
+        </div>
       </Card>
 
     </div>
@@ -48,7 +45,6 @@ const Paquete = ({ paque: { paquetesid, precio, dias, descripcion, hotel, titulo
 
 const useStyles = makeStyles((theme) => ({
   head: {
-
     marginTop: "1rem",
     fontSize: "3rem",
     display: "flex",
@@ -57,22 +53,22 @@ const useStyles = makeStyles((theme) => ({
 
   root: {
     maxWidth: "60vh",
-
   },
   card: {
-    minHeight: "75vh",
+    //minHeight: "75vh",
     [theme.breakpoints.down("sm")]: {
       marginLeft: theme.spacing(2),
       marginRight: theme.spacing(2),
       marginTop: theme.spacing(2),
       minHeight: "20vh",
     },
-
   },
 
   title: {
     backgroundColor: "#010C30",
     color: "#fff",
+    display: "grid",
+    placeItems: "center",
 
   },
   subColor: {
@@ -84,9 +80,11 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: "1rem",
   },
   button: {
-    backgroundColor: "#010C30",
-    left: "3rem",
+    //backgroundColor: "#010C30",
+    //left: "3rem",
     margin: theme.spacing(1),
+    display: "flex",
+    justifyContent: "center",
   },
 
 }));

@@ -13,7 +13,6 @@ function Banner() {
   if (!crucecita) {
     return <div className={classes.spinner}>
       <IconButton size="small" className={classes.spinner}> <Forward10Icon className={classes.spinner} /></IconButton>
-
     </div>
   }
 

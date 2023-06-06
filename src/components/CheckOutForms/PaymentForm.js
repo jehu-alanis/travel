@@ -47,14 +47,15 @@ const CheckoutForm = ({ nextStep, backStep ,paymentMessage,basket,fechas,persona
         setLoading(true);
          if(!error){
             const {id}= paymentMethod;
+            
              try{
                 
-                const {data} = await axios.post("http://localhost:4000/checkout",{
+                /* const {data} = await axios.post("http://localhost:4000/checkout",{
                        id,
                        amount: basket.basket[0].precio * 100,
-                    });    
+                    });   */  
                     
-                    paymentMessage(data.message)
+                    paymentMessage("succesful")
                     elements.getElement(CardElement).clear();
                     nextStep();
 
@@ -75,11 +76,11 @@ const CheckoutForm = ({ nextStep, backStep ,paymentMessage,basket,fechas,persona
            const hotel = basket.basket[0].hotel;
             const fecha_entrada=`${fecha_año}-${fecha_mes}-${fecha_dia}`;
             const fecha_salida=`${fecha_año1}-${fecha_mes1}-${fecha_dia1}`;
-             axios.post("http://localhost:4000/calendario",{
+             /* axios.post("http://localhost:4000/calendario",{
                 fecha_entrada,
                 hotel,
                 fecha_salida
-            });
+            }); */
              
         ////insert
         const name = personas.personas[0].Nombre_del_Viajero;
@@ -88,14 +89,14 @@ const CheckoutForm = ({ nextStep, backStep ,paymentMessage,basket,fechas,persona
         const importe = basket.basket[0].precio;
         const paquete = basket.basket[0].titulo;
         const nombre=`${name} ${apellido}`;
-         axios.post("http://localhost:4000/venta",{
+        /* axios.post("http://localhost:4000/venta",{
         paquete,
         fecha_entrada,
         fecha_salida,
         nombre,
         correo,       
         importe
-            });
+            }); */
            
         };
 

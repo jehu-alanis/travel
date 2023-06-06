@@ -23,7 +23,6 @@ const paquetes =[
         titulo: 'Paquete Sol y Playa',
         subtitle:'Tonala - Puerto Arista- Boca del cielo', 
         rating: '4',
-        
     },
     {
         paquetesid: 3,

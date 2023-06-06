@@ -28,9 +28,14 @@ registerLocale('es', es);
 
 
 const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
+  
   const [startDate, setStartDate] = useState(new Date());
+  
   const history = useHistory();
+  
   const [endDate, setEndDate] = useState(new Date(addDays(startDate, +2)));
+  console.log("en el estado",startDate,'startDate',endDate,"endDate");
+  
   const onChange = (dates) => {
     const [start] = dates;
     setStartDate(start);
@@ -47,27 +52,28 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
     total: null,
   });
 
-  const getFecha = async (startDate, endDate) => {
+  const getFecha =  (startDate, endDate) => {
     var date = startDate;
     var datew = endDate;
-    const fecha_año = date.getFullYear();
-    const fecha_mes = date.getMonth() + 1;
-    const fecha_dia = date.getDate();
-    const fecha_año1 = datew.getFullYear();
-    const fecha_mes1 = datew.getMonth() + 1;
-    const fecha_dia1 = datew.getDate();
+    const fecha_año = (date.getFullYear()).toString();
+    const fecha_mes = (date.getMonth() + 1).toString().padStart(2, '0');
+    const fecha_dia = (date.getDate()).toString().padStart(2, '0');
+    const fecha_año1 = (datew.getFullYear()).toString();
+    const fecha_mes1 = (datew.getMonth() + 1).toString().padStart(2, '0');
+    const fecha_dia1 = (datew.getDate()).toString().padStart(2, '0');
     const hotel = (paque.data.hotel);
     const fecha_entrada = `${fecha_año}-${fecha_mes}-${fecha_dia}`;
     const fecha_salida = `${fecha_año1}-${fecha_mes1}-${fecha_dia1}`;
-
+console.log(fecha_entrada, fecha_salida);
     //const res = await axios.get(`http://localhost:4000/calendario/count/${fecha_entrada}/${fecha_salida}/${hotel}`);
     /* if (res) {
       setFecha({
         total: res.data,
       });
     } */
-    //ir(res);
+    ir();
   };
+  
   const { paquetesid } = useParams();
   useEffect(() => {
 
@@ -80,16 +86,16 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
 
   const [loading, setLoading] = useState(false);
 
-  const ir = (res) => {
-    if (res.data >= 6) {
+  const ir = () => {
+   /*  if (res.data >= 6) {
       swal({
         title: " Fechas ocupadas",
         text: "Vuelve a escojer fechas",
         icon: "error",
         button: "Aceptar",
       })
-    }
-    if (res.data <= 5) {
+    } */
+   /*  if (res.data <= 5) { }*/
       swal({
         title: " Fechas disponibles",
         text: "Sigue adelante",
@@ -98,18 +104,32 @@ const Paquetebasic = ({ agregarBasket, agregarFechas }) => {
       }).then((value) => {
         setLoading(true);
       });
-    }
+    
   }
 
   const agregarPaquete = async (startDate, endDate) => {
     agregarBasket(paque.data);
+    
+
+
+    const fecha_año = (startDate.getFullYear()).toString();
+    const fecha_mes = (startDate.getMonth() + 1).toString().padStart(2, '0');
+    const fecha_dia = (startDate.getDate()).toString().padStart(2, '0');
+    const fecha_año1 = (endDate.getFullYear()).toString();
+    const fecha_mes1 = (endDate.getMonth() + 1).toString().padStart(2, '0');
+    const fecha_dia1 = (endDate.getDate()).toString().padStart(2, '0');
+    const fecha_entrada = `${fecha_año}-${fecha_mes}-${fecha_dia}`;
+    const fecha_salida = `${fecha_año1}-${fecha_mes1}-${fecha_dia1}`;
+    
     agregarFechas(startDate);
+    
     agregarFechas(endDate);
     history.push(`/checkout`);
-    setPaque({ data: [] });
+    /* setPaque({ data: [] });
     setStartDate(new Date());
     setEndDate(new Date(addDays(startDate, +2)));
     setFecha({ total: null });
+ */
   }
   const { loader } = paque;
   if (loader) {
